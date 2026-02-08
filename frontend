@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: orange;
+        }
+        .box {
+            max-width: 400px;
+            margin: auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            background: orange;
+            border: none;
+            margin-top: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .bill {
+            margin-top: 20px;
+            background: #333;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎬 Movie Ticket Booking</h1>
+
+<div class="box">
+
+    <label>Movie</label>
+    <select id="movie">
+        <option>TOXIC</option>
+        <option>PEDDI</option>
+        <option>DURANDHAR 2: THE REVENGE</option>
+        <option>KARUPPU</option>
+        <option>JANANAYAGAN</option>
+    </select>
+
+    <label>Theater</label>
+    <select id="theater">
+        <option>IMAX</option>
+        <option>PVR</option>
+        <option>THEATER</option>
+    </select>
+
+    <label>Seat Type</label>
+    <select id="seat">
+        <option value="250">DIAMOND</option>
+        <option value="200">GOLD</option>
+        <option value="150">SILVER</option>
+    </select>
+
+    <label>Number of Seats</label>
+    <input type="number" id="count" min="1" value="1">
+
+    <button onclick="book()">Book Ticket</button>
+
+    <div class="bill" id="bill">
+        <h3>🎟 Movie Bill</h3>
+        <p id="b_movie"></p>
+        <p id="b_theater"></p>
+        <p id="b_seat"></p>
+        <p id="b_count"></p>
+        <p id="b_total"></p>
+    </div>
+</div>
+
+<script>
+    function book() {
+        let movie = document.getElementById("movie").value;
+        let theater = document.getElementById("theater").value;
+        let seat = document.getElementById("seat");
+        let seatType = seat.options[seat.selectedIndex].text;
+        let price = parseInt(seat.value);
+        let count = parseInt(document.getElementById("count").value);
+
+        let serviceFee = 10;
+        let total = (price * count) + serviceFee;
+
+        document.getElementById("bill").style.display = "block";
+        document.getElementById("b_movie").innerText = "Movie : " + movie;
+        document.getElementById("b_theater").innerText = "Theater : " + theater;
+        document.getElementById("b_seat").innerText = "Seat Type : " + seatType;
+        document.getElementById("b_count").innerText = "No. of Seats : " + count;
+        document.getElementById("b_total").innerText = "Total Amount : Rs. " + total;
+    }
+</script>
+
+</body>
+</html>
